@@ -87,6 +87,7 @@ PLATFORMS
 
 DEPENDENCIES
   capybara
+  rack
   rspec
   rubocop (= 0.79.0)
   selenium-webdriver
