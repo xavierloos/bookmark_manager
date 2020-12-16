@@ -6,6 +6,12 @@ so I can see my bookmarks
 I like to see the LIST of all my BOOKMARKS
 ```
 
+```
+As a user
+so I can mantain the bookmarks
+I would like to add bookmark
+```
+
 <!-- ```
 As a user
 so I can mantain the bookmarks
