@@ -8,7 +8,9 @@
     <title>Document</title>
 </head>
 <body>
-    
+
+  <%= flash[:invalid] %>
+
 <ul>
   <% @bookmarks.each do |bookmark| %>
     <li class="bookmark" id="bookmark-<%= bookmark.id %>">
@@ -23,6 +25,6 @@
 <form action="/bookmarks/delete" method="get">
   <input type="submit" value="Delete" />
 </form>
+
 </body>
 </html>
-
