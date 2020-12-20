@@ -1,15 +1,20 @@
 require "pg"
 
 feature "Viewing bookmarks" do
-  scenario "A user can see bookmarks" do
-    Bookmark.create(url: "http://www.makersacademy.com", title: "Makers Academy")
-    Bookmark.create(url: "http://www.destroyallsoftware.com", title: "Destroy All Software")
-    Bookmark.create(url: "http://www.google.com", title: "Google")
-    
-    visit("/bookmarks")
+  feature "a user can add and then view a comment" do
+    scenario "a comment is added to a bookmark" do
+      bookmark = Bookmark.create(url: "http://www.makersacademy.com", title: "Makers Academy")
 
-    expect(page).to have_link('Makers Academy', href: 'http://www.makersacademy.com')
-    expect(page).to have_link('Destroy All Software',  href: 'http://www.destroyallsoftware.com')
-    expect(page).to have_link('Google', href: 'http://www.google.com')
+      visit "/bookmarks"
+      first(".bookmark").click_button "Comment"
+
+      expect(current_path).to eq "/bookmarks/#{bookmark.id}/comment"
+
+      fill_in "comment", with: "This is a test comment on this bookmark"
+      click_button "Submit"
+
+      expect(current_path).to eq "/bookmarks"
+      expect(first(".bookmark")).to have_content "This is a test comment on this bookmark"
+    end
   end
 end
